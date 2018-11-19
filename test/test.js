@@ -1,0 +1,48 @@
+const test = require('tape')
+const convert = require('../')
+
+test('converter', t => {
+  t.plan(33)
+
+  const result = convert(1, 'ether')
+
+  t.equal(result.wei, '1000000000000000000')
+  t.equal(result.kwei, '1000000000000000')
+  t.equal(result.mwei, '1000000000000')
+  t.equal(result.gwei, '1000000000')
+  t.equal(result.szabo, '1000000')
+  t.equal(result.finney, '1000')
+  t.equal(result.ether, '1')
+  t.equal(result.kether, '0.001')
+  t.equal(result.mether, '0.000001')
+  t.equal(result.gether, '0.000000001')
+  t.equal(result.tether, '0.000000000001')
+
+  const result2 = convert('1000000000000000000', 'wei')
+
+  t.equal(result2.wei, '1000000000000000000')
+  t.equal(result2.kwei, '1000000000000000')
+  t.equal(result2.mwei, '1000000000000')
+  t.equal(result2.gwei, '1000000000')
+  t.equal(result2.szabo, '1000000')
+  t.equal(result2.finney, '1000')
+  t.equal(result2.ether, '1')
+  t.equal(result2.kether, '0.001')
+  t.equal(result2.mether, '0.000001')
+  t.equal(result2.gether, '0.000000001')
+  t.equal(result2.tether, '0.000000000001')
+
+  const result3 = convert('50', 'gwei')
+
+  t.equal(result3.wei, '50000000000')
+  t.equal(result3.kwei, '50000000')
+  t.equal(result3.mwei, '50000')
+  t.equal(result3.gwei, '50')
+  t.equal(result3.szabo, '0.05')
+  t.equal(result3.finney, '0.00005')
+  t.equal(result3.ether, '0.00000005')
+  t.equal(result3.kether, '0.00000000005')
+  t.equal(result3.mether, '0.00000000000005')
+  t.equal(result3.gether, '0.00000000000000005')
+  t.equal(result3.tether, '0.00000000000000000005')
+})
