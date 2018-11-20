@@ -17,32 +17,34 @@ const units = [
 units.forEach(function(unit) {
   var el = document.querySelector('.' + unit)
   el.addEventListener('input', function(ev) {
-    var val = ev.target.value
+    var val = ev.target.value.replace(/[^\d\.]/gi, '')
+    var elunit = ev.target.className
 
     if (val) {
-      update(val, unit)
+      update(val, elunit)
     } else {
-      clearAllExcept(unit)
+      clearAllExcept(elunit)
     }
   })
 })
 
-function update(val, unit) {
-  var result = convert(val, unit)
+function update(val, elunit) {
+  var result = convert(parseFloat(val, 10), elunit)
 
   units.forEach(function(unit) {
+    if (unit === elunit) return
     var el = document.querySelector('.' + unit)
-    el.value = result[unit]
+    var x = result[unit]
+    el.value = x ? x : ''
   })
 }
 
 function clearAllExcept(exceptUnit) {
   units.forEach(function(unit) {
-    if (unit !== exceptUnit) {
-      var el = document.querySelector('.' + unit)
-      el.value = ''
-    }
+    if (unit === exceptUnit) return
+    var el = document.querySelector('.' + unit)
+    el.value = ''
   })
 }
 
-update(1, 'ether')
+update(document.querySelector('.ether').value, 'ether')
