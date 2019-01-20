@@ -1,8 +1,11 @@
 {
   "name": "ether-converter",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Ether unit converter",
   "main": "dist/index.js",
+  "bin": {
+    "ether_converter": "bin/ether_converter"
+  },
   "scripts": {
     "coverage": "node_modules/nyc/bin/nyc.js report --reporter=text-lcov | ./node_modules/.bin/coveralls",
     "test": "tape ./test/index.js",

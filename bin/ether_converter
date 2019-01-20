@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+const convert = require('../')
+
+const value = process.argv[2]
+const unit = process.argv[3]
+
+if (!value) {
+  console.log('value is required')
+  process.exit(1)
+}
+
+if (!unit) {
+  console.log('unit is required')
+  process.exit(1)
+}
+
+try {
+  const result = convert(value, unit)
+
+  for (let key in result) {
+    console.log(key.padEnd(8, ' '), result[key])
+  }
+} catch(err) {
+  console.log(err.message)
+}
