@@ -24,10 +24,10 @@ function convertToEther(value, unit) {
   if (unit === 'gether') return v.times(new BN(1000000000))
   if (unit === 'tether') return v.times(new BN(1000000000000))
 
-  throw TypeError('invalid unit')
+  throw TypeError('Invalid unit')
 }
 
-function converter(value, unit) {
+function converter(value, unit, toUnit) {
   const v = convertToEther(value, unit)
   unit = unit.toLowerCase()
 
@@ -69,6 +69,15 @@ function converter(value, unit) {
     result['gether'] = v.times(new BN(0.000000001)).toString(10)
   if (unit !== 'tether')
     result['tether'] = v.times(new BN(0.000000000001)).toString(10)
+
+  if (toUnit) {
+    toUnit = toUnit.trim().toLowerCase()
+    if (result[toUnit] === undefined) {
+      throw TypeError('Invalid unit')
+    }
+
+    return result[toUnit]
+  }
 
   return result
 }

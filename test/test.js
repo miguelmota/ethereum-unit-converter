@@ -2,7 +2,7 @@ const test = require('tape')
 const convert = require('../')
 
 test('converter', t => {
-  t.plan(33)
+  t.plan(37)
 
   const result = convert(1, 'ether')
 
@@ -45,4 +45,10 @@ test('converter', t => {
   t.equal(result3.mether, '0.00000000000005')
   t.equal(result3.gether, '0.00000000000000005')
   t.equal(result3.tether, '0.00000000000000000005')
+
+  t.equal(convert(1, 'ether', 'wei'), '1000000000000000000')
+  t.equal(convert('50', 'gwei', 'finney'), '0.00005')
+
+  t.throws(() => convert('50', 'invalidUnit'))
+  t.throws(() => convert('1', 'ether', 'invalidUnit'))
 })

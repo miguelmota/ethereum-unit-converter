@@ -32,7 +32,7 @@ const result = convert(1, 'ether')
 console.log(JSON.stringify(result, null, 2))
 ```
 
-Output
+Output:
 
 ```bash
 {
@@ -50,7 +50,7 @@ Output
 }
 ```
 
-Another example
+Another example:
 
 ```js
 const convert = require('ether-converter')
@@ -76,6 +76,16 @@ Output
   "gether": "0.00000000000000003",
   "tether": "0.00000000000000000003"
 }
+```
+
+Specific output example:
+
+```js
+console.log(convert(1, 'ether', 'wei')) // 1000000000000000000
+
+console.log(convert(30, 'gwei', 'ether')) // 0.00000003
+
+console.log(convert(30, 'gwei', 'wei')) // 30000000000
 ```
 
 ## CLI
@@ -124,6 +134,24 @@ kether  0.00000000003
 mether  0.00000000000003
 gether  0.00000000000000003
 tether  0.00000000000000000003
+```
+
+```bash
+$ ether_converter 1 ether wei
+
+1000000000000000000
+```
+
+```bash
+$ ether_converter 1 ether wei
+
+1000000000000000000
+```
+
+```bash
+$ ether_converter 30 gwei ether
+
+0.00000003
 ```
 
 ## License

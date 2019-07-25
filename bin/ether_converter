@@ -4,6 +4,7 @@ const convert = require('../')
 
 const value = process.argv[2]
 const unit = process.argv[3]
+const toUnit = process.argv[4]
 
 if (!value) {
   console.log('value is required')
@@ -16,11 +17,17 @@ if (!unit) {
 }
 
 try {
-  const result = convert(value, unit)
+  const result = convert(value, unit, toUnit)
+  if (toUnit) {
+    console.log(result)
+    process.exit(0)
+  }
 
   for (let key in result) {
     console.log(key.padEnd(8, ' '), result[key])
   }
+
+  process.exit(0)
 } catch(err) {
   console.log(err.message)
 }
