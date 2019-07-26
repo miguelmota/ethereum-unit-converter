@@ -78,7 +78,7 @@ Output
 }
 ```
 
-Specific output example:
+Specific output examples:
 
 ```js
 console.log(convert(1, 'ether', 'wei')) // 1000000000000000000

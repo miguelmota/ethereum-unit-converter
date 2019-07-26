@@ -1,6 +1,6 @@
 {
   "name": "ether-converter",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Ether unit converter",
   "main": "dist/index.js",
   "bin": {
@@ -11,7 +11,6 @@
     "test": "tape ./test/*.js",
     "test:report": "./node_modules/nyc/bin/nyc.js --reporter=html --reporter=text tape ./test/index.js",
     "build": "babel index.js --presets babel-preset-es2015 --out-dir dist/",
-    "build:cli": "babel cli.js --presets babel-preset-es2015 --out-dir dist/",
     "build:demo": "browserify example/client.js > example/dist/bundle.js"
   },
   "repository": {
