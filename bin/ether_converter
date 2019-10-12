@@ -2,32 +2,61 @@
 
 const convert = require('../')
 
-const value = process.argv[2]
-const unit = process.argv[3]
-const toUnit = process.argv[4]
+if (process.stdin) {
+  process.stdin.setEncoding('utf8')
+  process.stdin.resume()
+  var content = ''
+  process.stdin.on('data', (buf) => {
+    content += buf.toString()
+  })
+  setTimeout(() => {
+    content = content.trim()
 
-if (!value) {
-  console.log('value is required')
-  process.exit(1)
-}
+    let unit = process.argv[2]
+    let toUnit = process.argv[3]
+    let value = (content || '0').trim()
 
-if (!unit) {
-  console.log('unit is required')
-  process.exit(1)
-}
+    if (!content) {
+      value = process.argv[2]
+      unit = process.argv[3]
+      toUnit = process.argv[4]
+    }
 
-try {
-  const result = convert(value, unit, toUnit)
-  if (toUnit) {
-    console.log(result)
+    run(value, unit, toUnit)
     process.exit(0)
+  }, 10)
+} else {
+  const value = process.argv[2]
+  const unit = process.argv[3]
+  const toUnit = process.argv[4]
+
+  run(value, unit, toUnit)
+}
+
+function run(value, unit, toUnit) {
+  if (!value) {
+    console.log('value is required')
+    process.exit(1)
   }
 
-  for (let key in result) {
-    console.log(key.padEnd(8, ' '), result[key])
+  if (!unit) {
+    console.log('unit is required')
+    process.exit(1)
   }
 
-  process.exit(0)
-} catch(err) {
-  console.log(err.message)
+  try {
+    const result = convert(value, unit, toUnit)
+    if (toUnit) {
+      console.log(result)
+      process.exit(0)
+    }
+
+    for (let key in result) {
+      console.log(key.padEnd(8, ' '), result[key])
+    }
+
+    process.exit(0)
+  } catch(err) {
+    console.log(err.message)
+  }
 }

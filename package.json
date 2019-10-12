@@ -1,6 +1,6 @@
 {
   "name": "ether-converter",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Ether unit converter",
   "main": "dist/index.js",
   "bin": {
@@ -35,7 +35,8 @@
     "ether",
     "eth",
     "unit",
-    "converter"
+    "converter",
+    "cli"
   ],
   "dependencies": {
     "bignumber.js": "^8.0.1"

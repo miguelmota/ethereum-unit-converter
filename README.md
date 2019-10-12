@@ -154,6 +154,14 @@ $ ether_converter 30 gwei ether
 0.00000003
 ```
 
+Piping value example:
+
+```bash
+$ echo 1000000000000000000 | ether_converter wei ether
+
+1
+```
+
 ## License
 
 [MIT](LICENSE)
