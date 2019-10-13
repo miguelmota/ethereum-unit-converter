@@ -5,16 +5,16 @@ const convert = require('../')
 if (process.stdin) {
   process.stdin.setEncoding('utf8')
   process.stdin.resume()
-  var content = ''
+  let content = ''
   process.stdin.on('data', (buf) => {
     content += buf.toString()
   })
   setTimeout(() => {
     content = content.trim()
 
+    let value = (content || '0')
     let unit = process.argv[2]
     let toUnit = process.argv[3]
-    let value = (content || '0').trim()
 
     if (!content) {
       value = process.argv[2]
@@ -23,7 +23,6 @@ if (process.stdin) {
     }
 
     run(value, unit, toUnit)
-    process.exit(0)
   }, 10)
 } else {
   const value = process.argv[2]
