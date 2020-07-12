@@ -4,7 +4,8 @@
   "description": "Ether unit converter",
   "main": "dist/index.js",
   "bin": {
-    "ether_converter": "bin/ether_converter"
+    "ether_converter": "bin/ether_converter",
+    "ether-converter": "bin/ether_converter"
   },
   "scripts": {
     "coverage": "node_modules/nyc/bin/nyc.js report --reporter=text-lcov | ./node_modules/.bin/coveralls",
