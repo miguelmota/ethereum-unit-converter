@@ -99,13 +99,13 @@ npm install -g ether-converter
 ### Getting started
 
 ```bash
-$ ether_converter {value} {unit}
+$ ether-converter {value} {unit}
 ```
 
 ### Examples
 
 ```bash
-$ ether_converter 10 ether
+$ ether-converter 10 ether
 
 wei     10000000000000000000
 kwei    10000000000000000
@@ -121,7 +121,7 @@ tether  0.00000000001
 ```
 
 ```bash
-$ ether_converter 30 gwei
+$ ether-converter 30 gwei
 
 wei     30000000000
 kwei    30000000
@@ -137,19 +137,19 @@ tether  0.00000000000000000003
 ```
 
 ```bash
-$ ether_converter 1 ether wei
+$ ether-converter 1 ether wei
 
 1000000000000000000
 ```
 
 ```bash
-$ ether_converter 1 ether wei
+$ ether-converter 1 ether wei
 
 1000000000000000000
 ```
 
 ```bash
-$ ether_converter 30 gwei ether
+$ ether-converter 30 gwei ether
 
 0.00000003
 ```
@@ -157,7 +157,7 @@ $ ether_converter 30 gwei ether
 Piping value example:
 
 ```bash
-$ echo 1000000000000000000 | ether_converter wei ether
+$ echo 1000000000000000000 | ether-converter wei ether
 
 1
 ```

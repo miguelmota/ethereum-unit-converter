@@ -11,6 +11,7 @@ function convertToEther(value, unit) {
 
   const v = new BN(value)
   unit = unit.toLowerCase()
+  if (unit === 'eth') unit = 'ether'
 
   if (unit === 'wei'   ) return v.times(new BN(0.000000000000000001))
   if (unit === 'kwei'  ) return v.times(new BN(0.000000000000001))
@@ -30,6 +31,8 @@ function convertToEther(value, unit) {
 function converter(value, unit, toUnit) {
   const v = convertToEther(value, unit)
   unit = unit.toLowerCase()
+  if (unit === 'eth') unit = 'ether'
+  if (toUnit === 'eth') toUnit = 'ether'
 
   const result = {
     wei: null,
