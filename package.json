@@ -1,6 +1,6 @@
 {
   "name": "ether-converter",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Ether unit converter",
   "main": "dist/index.js",
   "bin": {

@@ -44,6 +44,7 @@ function run(value, unit, toUnit) {
   }
 
   try {
+    value = value.replace(/[^0-9.e+-]+/gi, '')
     const result = convert(value, unit, toUnit)
     if (toUnit) {
       console.log(result)
