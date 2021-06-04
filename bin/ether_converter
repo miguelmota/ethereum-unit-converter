@@ -32,14 +32,14 @@ if (process.stdin) {
   run(value, unit, toUnit)
 }
 
-function run(value, unit, toUnit) {
+function run (value, unit, toUnit) {
   if (!value) {
-    console.log('value is required')
+    process.stderr.write('value is required')
     process.exit(1)
   }
 
   if (!unit) {
-    console.log('unit is required')
+    process.stderr.write('unit is required')
     process.exit(1)
   }
 
@@ -47,16 +47,19 @@ function run(value, unit, toUnit) {
     value = value.replace(/[^0-9.e+-]+/gi, '')
     const result = convert(value, unit, toUnit)
     if (toUnit) {
-      console.log(result)
+      process.stdout.write(`${result}`)
       process.exit(0)
     }
 
-    for (let key in result) {
-      console.log(key.padEnd(8, ' '), result[key])
+    const output = []
+    for (const key in result) {
+      output.push(`${key.padEnd(8, ' ')} ${result[key]}`)
     }
+    process.stdout.write(output.join('\n'))
 
     process.exit(0)
-  } catch(err) {
-    console.log(err.message)
+  } catch (err) {
+    process.stderr.write(err.message)
+    process.exit(1)
   }
 }
