@@ -1,16 +1,38 @@
 const BN = require('bignumber.js')
 
+function parseUnit (unit) {
+  const decimalsToUnit = {
+    '-18': 'wei',
+    '-15': 'kwei',
+    '-12': 'mwei',
+    '-9': 'gwei',
+    '-6': 'szabo',
+    '-3': 'finney',
+    1: 'ether',
+    3: 'kether',
+    6: 'mether',
+    9: 'gether',
+    12: 'tether'
+  }
+  if (typeof unit === 'string') {
+    unit = unit.trim().toLowerCase()
+  }
+  if (unit !== undefined && !isNaN(unit)) {
+    unit = decimalsToUnit[unit]
+  }
+  return unit
+}
+
 function convertToEther (value, unit) {
   if (value === undefined) {
     throw TypeError('value is required')
   }
-
+  unit = parseUnit(unit)
   if (unit === undefined) {
     throw TypeError('unit is required')
   }
 
   const v = new BN(value)
-  unit = unit.toLowerCase()
   if (unit === 'eth') unit = 'ether'
 
   if (unit === 'wei') return v.times(new BN(0.000000000000000001))
@@ -29,8 +51,9 @@ function convertToEther (value, unit) {
 }
 
 function converter (value, unit, toUnit) {
+  unit = parseUnit(unit)
+  toUnit = parseUnit(toUnit)
   const v = convertToEther(value, unit)
-  unit = unit.toLowerCase()
   if (unit === 'eth') unit = 'ether'
   if (toUnit === 'eth') toUnit = 'ether'
 
@@ -63,7 +86,6 @@ function converter (value, unit, toUnit) {
   if (unit !== 'tether') { result.tether = v.times(new BN(0.000000000001)).toString(10) }
 
   if (toUnit) {
-    toUnit = toUnit.trim().toLowerCase()
     if (result[toUnit] === undefined) {
       throw TypeError('Invalid unit')
     }
