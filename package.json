@@ -1,11 +1,13 @@
 {
-  "name": "ether-converter",
-  "version": "0.0.15",
-  "description": "Ether unit converter",
+  "name": "ethereum-unit-converter",
+  "version": "0.0.16",
+  "description": "Ethereum unit converter",
   "main": "dist/index.js",
   "bin": {
-    "ether_converter": "bin/ether_converter",
-    "ether-converter": "bin/ether_converter"
+    "ether_converter": "bin/ethereum-unit-converter",
+    "ether-converter": "bin/ethereum-unit-converter",
+    "ethereum_unit_converter": "bin/ethereum-unit-converter",
+    "ethereum-unit-converter": "bin/ethereum-unit-converter"
   },
   "scripts": {
     "lint": "standard --fix *.js test/*.js bin/*",
@@ -13,16 +15,16 @@
     "test": "tape ./test/*.js",
     "test:report": "./node_modules/nyc/bin/nyc.js --reporter=html --reporter=text tape ./test/index.js",
     "build": "babel index.js --presets babel-preset-es2015 --out-dir dist/",
-    "build:demo": "browserify example/client.js > example/dist/bundle.js"
+    "build:example": "browserify example/client.js > example/dist/bundle.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/miguelmota/ether-converter"
+    "url": "https://github.com/miguelmota/ethereum-unit-converter"
   },
   "bugs": {
-    "url": "https://github.com/miguelmota/ether-converter/issues"
+    "url": "https://github.com/miguelmota/ethereum-unit-converter/issues"
   },
-  "homepage": "https://github.com/miguelmota/ether-converter",
+  "homepage": "https://github.com/miguelmota/ethereum-unit-converter",
   "author": {
     "name": "Miguel Mota",
     "email": "hello@miguelmota.com",
@@ -30,14 +32,17 @@
   },
   "license": {
     "type": "MIT",
-    "url": "https://github.com/miguelmota/ether-converter/blob/master/LICENSE"
+    "url": "https://github.com/miguelmota/ethereum-unit-converter/blob/master/LICENSE"
   },
   "keywords": [
     "crypto",
+    "ethereum",
     "ether",
     "eth",
     "unit",
     "converter",
+    "tool",
+    "util",
     "cli"
   ],
   "dependencies": {

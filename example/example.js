@@ -1,4 +1,4 @@
-//const convert = require('ether-converter')
+//const convert = require('ethereum-unit-converter')
 const convert = require('../')
 
 console.log(JSON.stringify(convert(1, 'ether'), null, 2))

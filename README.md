@@ -1,31 +1,26 @@
-<h3 align="center">
-  <br />
-  <img src="https://user-images.githubusercontent.com/168240/51433598-a4171800-1c02-11e9-95c2-b19588f497e3.png" alt="logo" width="600" />
-  <br />
-  <br />
-  <br />
-</h3>
+# ethereum-unit-converter
 
-# ether-converter
+> [Ethereum](https://ethereum.org/) unit converter in JavaScript
 
-> Ether unit converter
+[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/ethereum-unit-converter/master/LICENSE)
+[![Build Status](https://travis-ci.org/miguelmota/ethereum-unit-converter.svg?branch=master)](https://travis-ci.org/miguelmota/ethereum-unit-converter)
+[![dependencies Status](https://david-dm.org/miguelmota/ethereum-unit-converter/status.svg)](https://david-dm.org/miguelmota/ethereum-unit-converter)
+[![NPM version](https://badge.fury.io/js/ethereum-unit-converter.svg)](http://badge.fury.io/js/ethereum-unit-converter)
 
-[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/ether-converter/master/LICENSE) [![Build Status](https://travis-ci.org/miguelmota/ether-converter.svg?branch=master)](https://travis-ci.org/miguelmota/ether-converter) [![dependencies Status](https://david-dm.org/miguelmota/ether-converter/status.svg)](https://david-dm.org/miguelmota/ether-converter) [![NPM version](https://badge.fury.io/js/ether-converter.svg)](http://badge.fury.io/js/ether-converter)
+## Example
 
-## Demo
-
-[https://lab.miguelmota.com/ether-converter](https://lab.miguelmota.com/ether-converter)
+[https://lab.miguelmota.com/ethereum-unit-converter](https://lab.miguelmota.com/ethereum-unit-converter)
 
 ## Install
 
 ```bash
-npm install ether-converter
+npm install ethereum-unit-converter
 ```
 
 ## Getting started
 
 ```js
-const convert = require('ether-converter')
+const convert = require('ethereum-unit-converter')
 
 const result = convert(1, 'ether')
 
@@ -53,7 +48,7 @@ Output:
 Another example:
 
 ```js
-const convert = require('ether-converter')
+const convert = require('ethereum-unit-converter')
 
 const result = convert(30, 'gwei')
 
@@ -93,7 +88,7 @@ console.log(convert(30, 'gwei', 'wei')) // 30000000000
 Install
 
 ```bash
-npm install -g ether-converter
+npm install -g ethereum-unit-converter
 ```
 
 ### Getting started
@@ -160,6 +155,26 @@ Piping value example:
 $ echo 1000000000000000000 | ether-converter wei ether
 
 1
+```
+
+Using decimal numbers example:
+
+```bash
+$ ether-converter 1000000 -6 ether
+
+1
+```
+
+```bash
+$ ether-converter 1000000 -6 1
+
+1
+```
+
+```bash
+$ ether-converter 1 1 -6
+
+1000000
 ```
 
 ## License
