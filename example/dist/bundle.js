@@ -123,6 +123,7 @@ function converter(value, unit, toUnit) {
 
 module.exports = converter;
 },{"bignumber.js":3}],2:[function(require,module,exports){
+const BN = require('bignumber.js')
 const convert = require('../')
 
 const units = [
@@ -139,10 +140,18 @@ const units = [
   'tether'
 ]
 
+function intToHex(value) {
+  try {
+    return '0x' + new BN(value || 0).toString(16)
+  } catch(err) {
+    return ''
+  }
+}
+
 units.forEach(function(unit) {
   var el = document.querySelector('.' + unit)
   el.addEventListener('input', function(ev) {
-    var val = ev.target.value.replace(/[^\d\.]/gi, '')
+    var val = ev.target.value.trim()
     var elunit = ev.target.className
 
     if (val) {
@@ -154,27 +163,38 @@ units.forEach(function(unit) {
 })
 
 function update(val, elunit) {
-  var result = convert(parseFloat(val, 10), elunit)
+  var result = convert(val, elunit)
 
   units.forEach(function(unit) {
-    if (unit === elunit) return
     var el = document.querySelector('.' + unit)
     var x = result[unit]
-    el.value = x ? x : ''
+    if (x === 'NaN') {
+      x = ''
+    }
+    if (unit !== elunit || el.value.trim().startsWith('0x')) {
+      el.value = x ? x : ''
+    }
+
+    var hexEl = document.querySelector('.hex.' + unit)
+    hexEl.innerText = intToHex(x)
   })
 }
 
 function clearAllExcept(exceptUnit) {
   units.forEach(function(unit) {
-    if (unit === exceptUnit) return
     var el = document.querySelector('.' + unit)
-    el.value = ''
+    if (unit !== exceptUnit) {
+      el.value = ''
+    }
+
+    var hexEl = document.querySelector('.hex.' + unit)
+    hexEl.innerText = intToHex(0)
   })
 }
 
 update(document.querySelector('.ether').value, 'ether')
 
-},{"../":1}],3:[function(require,module,exports){
+},{"../":1,"bignumber.js":3}],3:[function(require,module,exports){
 ;(function (globalObject) {
   'use strict';
 
