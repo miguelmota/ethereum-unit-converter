@@ -10,7 +10,7 @@
     "ethereum-unit-converter": "bin/ethereum-unit-converter"
   },
   "scripts": {
-    "lint": "standard --fix *.js test/*.js bin/*",
+    "lint": "standard --fix *.js test/*.js bin/* example/client.js",
     "coverage": "node_modules/nyc/bin/nyc.js report --reporter=text-lcov | ./node_modules/.bin/coveralls",
     "test": "tape ./test/*.js",
     "test:report": "./node_modules/nyc/bin/nyc.js --reporter=html --reporter=text tape ./test/index.js",

@@ -15,19 +15,19 @@ const units = [
   'tether'
 ]
 
-function intToHex(value) {
+function intToHex (value) {
   try {
     return '0x' + new BN(value || 0).toString(16)
-  } catch(err) {
+  } catch (err) {
     return ''
   }
 }
 
-units.forEach(function(unit) {
-  var el = document.querySelector('.' + unit)
-  el.addEventListener('input', function(ev) {
-    var val = ev.target.value.trim()
-    var elunit = ev.target.className
+units.forEach(function (unit) {
+  const el = document.querySelector('.' + unit)
+  el.addEventListener('input', function (ev) {
+    const val = ev.target.value.trim()
+    const elunit = ev.target.className
 
     if (val) {
       update(val, elunit)
@@ -37,34 +37,50 @@ units.forEach(function(unit) {
   })
 })
 
-function update(val, elunit) {
-  var result = convert(val, elunit)
+function update (val, elunit) {
+  const result = convert(val, elunit)
 
-  units.forEach(function(unit) {
-    var el = document.querySelector('.' + unit)
-    var x = result[unit]
+  units.forEach(function (unit) {
+    const el = document.querySelector('.' + unit)
+    let x = result[unit]
     if (x === 'NaN') {
       x = ''
     }
     if (unit !== elunit || el.value.trim().startsWith('0x')) {
-      el.value = x ? x : ''
+      el.value = x || ''
+    }
+    try {
+      window.localStorage.setItem('ether', result.ether)
+    } catch (err) {
+      console.error(err)
     }
 
-    var hexEl = document.querySelector('.hex.' + unit)
+    const hexEl = document.querySelector('.hex.' + unit)
     hexEl.innerText = intToHex(x)
   })
 }
 
-function clearAllExcept(exceptUnit) {
-  units.forEach(function(unit) {
-    var el = document.querySelector('.' + unit)
+function clearAllExcept (exceptUnit) {
+  units.forEach(function (unit) {
+    const el = document.querySelector('.' + unit)
     if (unit !== exceptUnit) {
       el.value = ''
     }
 
-    var hexEl = document.querySelector('.hex.' + unit)
+    const hexEl = document.querySelector('.hex.' + unit)
     hexEl.innerText = intToHex(0)
   })
 }
 
-update(document.querySelector('.ether').value, 'ether')
+const ethEl = document.querySelector('.ether')
+
+try {
+  const cached = window.localStorage.getItem('ether')
+  if (cached) {
+    ethEl.value = cached
+  }
+} catch (err) {
+  console.error(err)
+}
+
+update(ethEl.value, 'ether')

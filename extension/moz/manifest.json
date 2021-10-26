@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Ethereum Unit Converter",
+  "version": "1.0",
+  "description": "A simple Ethereum unit converter",
+  "icons": {
+    "48": "icons/eth-48.png"
+  },
+  "browser_action": {
+    "browser_style": true,
+    "default_popup": "popup/index.html",
+    "default_icon": {
+      "16": "icons/eth-16.png",
+      "32": "icons/eth-32.png"
+    }
+  }
+}
