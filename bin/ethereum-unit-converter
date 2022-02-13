@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const { BigNumber } = require('ethers')
 const convert = require('../')
 
 if (process.stdin) {
@@ -32,6 +33,20 @@ if (process.stdin) {
   run(value, unit, toUnit)
 }
 
+const powUnits = {
+  '-18': 'wei',
+  '-15': 'kwei',
+  '-12': 'mwei',
+  '-9': 'gwei',
+  '-6': 'szabo',
+  '-3': 'finney',
+  1: 'ether',
+  3: 'kether',
+  6: 'mether',
+  9: 'gether',
+  12: 'kether'
+}
+
 function run (value, unit, toUnit) {
   if (!value) {
     process.stderr.write('value is required')
@@ -44,7 +59,16 @@ function run (value, unit, toUnit) {
   }
 
   try {
+    if (value.startsWith('0x')) {
+      value = BigNumber.from(value).toString()
+    }
     value = value.replace(/[^0-9.e+-]+/gi, '')
+    if (powUnits[unit]) {
+      unit = powUnits[unit]
+    }
+    if (powUnits[toUnit]) {
+      toUnit = powUnits[toUnit]
+    }
     const result = convert(value, unit, toUnit)
     if (toUnit) {
       process.stdout.write(`${result}`)

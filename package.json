@@ -1,6 +1,6 @@
 {
   "name": "ethereum-unit-converter",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Ethereum unit converter",
   "main": "dist/index.js",
   "bin": {
@@ -46,7 +46,8 @@
     "cli"
   ],
   "dependencies": {
-    "bignumber.js": "^8.0.1"
+    "bignumber.js": "^8.0.1",
+    "ethers": "^5.5.4"
   },
   "devDependencies": {
     "babel": "^6.23.0",
